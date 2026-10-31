@@ -43,7 +43,7 @@ Keep `PAYFAST_SANDBOX=true`, use sandbox credentials, and test from the deployed
 
 The download includes the verified paid status, payment time and reference, customer details, delivery details, products, and total. Email remains a manual step; no email is sent by this site.
 
-For a quick local storefront walkthrough, open `cart.html` directly from the file system. A local-only test panel fills sample details and lets you simulate successful, cancelled, or failed payment without contacting PayFast. A simulated success displays a test receipt and an unsent email preview; both are marked as simulations and are not proof of payment. The test panel is hidden on hosted pages.
+For a quick storefront walkthrough, open `cart.html` directly from the file system or visit the hosted cart with `?test_checkout=1` (for example `https://username.github.io/repository/cart.html?test_checkout=1`). The test panel fills sample details and lets you simulate successful, cancelled, or failed payment without contacting PayFast. A simulated success displays a test receipt and an unsent email preview; both are marked as simulations and are not proof of payment. The test panel is hidden during normal browsing.
 
 ## Included functions
 

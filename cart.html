@@ -100,12 +100,13 @@ main{width:min(900px,calc(100% - 48px));padding-top:58px;padding-bottom:82px}
 .test-checkout h3{margin:0 0 6px;font-size:15px}
 .test-checkout p{margin:0 0 12px;color:#604a27;font-size:12px}
 .test-checkout .field{max-width:420px}
+.test-checkout select{width:100%;min-height:44px;padding:9px 11px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink);font:inherit}
 .test-checkout .btn{margin-top:12px}
 .empty{padding:26px 0}
 .empty{padding:26px 0}
 .note{min-height:1.5em;color:var(--mute);font-size:12px}
 footer{padding:22px 0;color:var(--mute);font-size:11px}
-@media(max-width:760px){.wrap{width:calc(100% - 32px)}main{width:calc(100% - 32px);padding-top:42px;padding-bottom:54px}.cart-shell{padding:18px 0}.item{grid-template-columns:minmax(0,1fr) auto;gap:10px}.item>span:last-child{grid-column:1/-1;text-align:right}.item-name{font-size:14px}.intro{margin-bottom:26px}.form-section{padding:18px 16px}.field-grid{grid-template-columns:1fr}.checkout-actions{grid-template-columns:1fr}}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}main{width:calc(100% - 32px);padding-top:42px;padding-bottom:54px}.cart-shell{padding:18px 0}.item{grid-template-columns:minmax(0,1fr) auto;gap:10px}.item>span:last-child{grid-column:1/-1;text-align:right}.item-name{font-size:14px}.intro{margin-bottom:26px}.form-section{padding:18px 16px}.field-grid{grid-template-columns:1fr}.checkout-actions{grid-template-columns:1fr}.test-checkout{padding:16px}.test-checkout .btn{width:100%}}
 </style>
 <link rel="stylesheet" href="site-header.css">
 </head>
@@ -207,9 +208,10 @@ let cart=[];
 try{cart=LidHealthCart.load()}catch(error){$("#note").textContent=error.message}
 const checkout=$("#checkout"),checkoutForm=$("#checkout-form"),deliveryMethod=$("#delivery-method");
 const localTestMode=location.protocol==="file:"||["localhost","127.0.0.1"].includes(location.hostname);
-$("#test-checkout").hidden=!localTestMode;
-$("#pay").hidden=localTestMode;
-$("#whatsapp-order").hidden=localTestMode;
+const testCheckoutEnabled=localTestMode||new URLSearchParams(location.search).get("test_checkout")==="1";
+$("#test-checkout").hidden=!testCheckoutEnabled;
+$("#pay").hidden=testCheckoutEnabled;
+$("#whatsapp-order").hidden=testCheckoutEnabled;
 function orderDetails(){
   const data=new FormData(checkoutForm),method=deliveryMethod.value,delivery=deliveryOptions[method];
   if(!checkoutForm.reportValidity()||!delivery)return null;
@@ -334,7 +336,9 @@ function simulateTestCheckout(){
     totalCents:Math.round((order.subtotal+order.deliveryFee)*100)
   };
   sessionStorage.setItem(`lidhealth-test-receipt:${orderId}`,JSON.stringify(receipt));
-  location.href=`payment-return.html?test_payment=success&order_id=${encodeURIComponent(orderId)}`;
+  const returnParams=new URLSearchParams({test_payment:"success",order_id});
+  if(!localTestMode)returnParams.set("test_checkout","1");
+  location.href=`payment-return.html?${returnParams}`;
 }
 $("#run-test-checkout").addEventListener("click",simulateTestCheckout);
 async function pay(){

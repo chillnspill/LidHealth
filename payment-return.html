@@ -80,6 +80,7 @@
     const token=orderId?sessionStorage.getItem(`lidhealth-receipt:${orderId}`):null;
     const query=new URLSearchParams(location.search);
     const localTestMode=location.protocol==="file:"||["localhost","127.0.0.1"].includes(location.hostname);
+    const testModeEnabled=localTestMode||query.get("test_checkout")==="1";
     const testReceiptId=query.get("test_payment")==="success"?query.get("order_id"):null;
     let paidReceipt=null;
     let simulatedReceipt=false;
@@ -252,7 +253,7 @@
     });
     $("#check-payment").addEventListener("click",checkPayment);
     $("#check-payment").hidden=Boolean(testReceiptId);
-    if(testReceiptId&&localTestMode){
+    if(testReceiptId&&testModeEnabled){
       let receipt;
       try{receipt=JSON.parse(sessionStorage.getItem(`lidhealth-test-receipt:${testReceiptId}`)||"null")}catch(error){console.error("Could not read the simulated receipt.",error)}
       if(receipt&&receipt.orderId===testReceiptId){
