@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Cart | LidHealth</title>
+<style>
+:root{color-scheme:light dark;--bg:#faf8f4;--ink:#28242a;--mute:#716a70;--pu:#553b5c;--tile:#f0ebe6;--line:#e8e1db;--on:#fff;--accent:#a67d67;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1b20;--ink:#f2ece6;--mute:#b6aeb2;--pu:#c8accb;--tile:#29242a;--line:#403941;--on:#211d23;--accent:#d1a98e}}
+:root[data-theme="dark"]{--bg:#1e1b20;--ink:#f2ece6;--mute:#b6aeb2;--pu:#c8accb;--tile:#29242a;--line:#403941;--on:#211d23;--accent:#d1a98e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Avenir Next",Avenir,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(920px,calc(100% - 48px));margin:0 auto}
+header{background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:18px;padding-bottom:18px}
+.wordmark{font-family:"Iowan Old Style",Baskerville,Georgia,serif;color:var(--ink);font-size:19px;letter-spacing:.1em;text-decoration:none}
+h1,h2{font-family:"Iowan Old Style",Baskerville,"Palatino Linotype",Georgia,serif;font-weight:500;line-height:1.15;letter-spacing:-.025em}
+h1{font-size:clamp(42px,7vw,68px);margin:0}h2{font-size:24px;margin:0 0 16px}
+a{color:var(--pu)}
+.btn,.ghost{font:inherit;min-height:46px;border-radius:3px;padding:0 16px;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease}
+.btn{background:var(--pu);color:var(--on);border:1px solid var(--pu)}
+.btn:hover{background:var(--ink);border-color:var(--ink);transform:translateY(-1px)}
+.ghost{display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--line);color:var(--ink);text-decoration:none}
+.ghost:hover{border-color:var(--pu);color:var(--pu);background:var(--tile)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+main{padding-top:64px;padding-bottom:76px}
+.eyebrow{margin:0 0 12px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.intro{max-width:580px;margin-bottom:36px}
+.intro p:last-child{max-width:46ch;margin:16px 0 0;color:var(--mute)}
+.cart-shell{padding:26px 30px;border:1px solid var(--line);background:color-mix(in srgb,var(--tile) 42%,var(--bg))}
+.cart-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.cart-heading h2{margin:0}.cart-heading span{color:var(--mute);font-size:13px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.item-name{font-family:"Iowan Old Style",Baskerville,Georgia,serif;font-size:18px}
+.quantity{display:flex;align-items:center;gap:10px}.quantity span{min-width:2ch;text-align:center;font-variant-numeric:tabular-nums}
+.quantity button{width:36px;min-height:36px;padding:0;font-size:18px}
+.item>span:last-child{min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+.total{display:flex;justify-content:space-between;font-size:20px;font-weight:600;padding:22px 0 16px;font-variant-numeric:tabular-nums}
+#pay{width:100%}
+.empty{padding:26px 0;color:var(--mute)}
+.note{min-height:1.5em;color:var(--mute);font-size:14px}
+footer{padding:22px 0;color:var(--mute);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--line)}
+@media(max-width:600px){.wrap{width:calc(100% - 32px)}header .wrap{padding-top:14px;padding-bottom:14px}main{padding-top:42px;padding-bottom:54px}.cart-shell{padding:20px 16px}.item{grid-template-columns:minmax(0,1fr) auto;gap:10px}.item>span:last-child{grid-column:1/-1;text-align:right}.item-name{font-size:16px}.intro{margin-bottom:26px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+:root{color-scheme:light;--bg:#fff;--ink:#252925;--mute:#737a74;--pu:#26332b;--tile:#f3f5f2;--line:#e6e9e5;--on:#fff;--accent:#567561}
+:root:not([data-theme="light"]){--bg:#fff;--ink:#252925;--mute:#737a74;--pu:#26332b;--tile:#f3f5f2;--line:#e6e9e5;--on:#fff;--accent:#567561}
+body{font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif;font-size:14px;line-height:1.6}
+.wrap{width:min(1200px,calc(100% - 48px));max-width:none}
+.announce{min-height:27px;display:grid;place-items:center;padding:4px 16px;background:#4b2864;color:white;text-align:center;font-size:10px;letter-spacing:.08em}
+header{background:#fff}
+header .wrap{min-height:68px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;border-bottom:1px solid var(--line);padding-top:0;padding-bottom:0}
+.wordmark{grid-column:2;grid-row:1;color:var(--ink);font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif;font-size:14px;font-weight:700;letter-spacing:.16em}
+.cart-nav{grid-column:1;grid-row:1;display:flex;align-items:center;gap:22px}
+.cart-nav a{color:var(--ink);font-size:10px;font-weight:600;letter-spacing:.1em;text-decoration:none;text-transform:uppercase}
+.cart-nav a:hover{color:#557663}
+header .ghost{grid-column:3;grid-row:1;justify-self:end;min-height:38px;border-radius:0;font-size:11px}
+h1,h2{font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif;font-weight:500;letter-spacing:-.035em}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.08}
+h2{font-size:20px;font-weight:600}
+a{color:#3f614b}
+.btn,.ghost{border-radius:0}
+.btn{background:#252925;border-color:#252925;color:#fff;font-size:11px;letter-spacing:.04em}
+.btn:hover{background:#557663;border-color:#557663}
+.ghost:hover{border-color:#557663;color:#557663;background:#f3f5f2}
+:focus-visible{outline:2px solid #567561;outline-offset:3px}
+main{width:min(900px,calc(100% - 48px));padding-top:58px;padding-bottom:82px}
+.eyebrow{margin:0 0 12px;color:#557663;font-size:9px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
+.intro{max-width:580px;margin-bottom:32px}
+.intro p:last-child{max-width:46ch;margin:14px 0 0;color:var(--mute)}
+.cart-shell{padding:22px 0;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.cart-heading{padding:0 0 16px}
+.item{padding:18px 0}
+.item-name{font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif;font-size:14px}
+.quantity button{border-radius:0}
+.total{font-weight:600}
+#pay{max-width:320px}
+.empty{padding:26px 0}
+.note{min-height:1.5em;color:var(--mute);font-size:12px}
+footer{padding:22px 0;color:var(--mute);font-size:11px}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}header .wrap{min-height:60px;grid-template-columns:1fr auto;gap:8px}.wordmark{grid-column:1;grid-row:1;justify-self:start}.cart-nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:18px;padding:0 0 12px}.cart-nav a{font-size:9px}header .ghost{grid-column:2;grid-row:1;min-height:36px;font-size:10px}main{width:calc(100% - 32px);padding-top:42px;padding-bottom:54px}.cart-shell{padding:18px 0}.item{grid-template-columns:minmax(0,1fr) auto;gap:10px}.item>span:last-child{grid-column:1/-1;text-align:right}.item-name{font-size:14px}.intro{margin-bottom:26px}#pay{max-width:none;width:100%}}
+</style>
+</head>
+<body>
+<div class="announce">LID & LASH CARE, MADE FOR EVERYDAY LIFE</div>
+<header><div class="wrap"><nav class="cart-nav" aria-label="Main navigation"><a href="LidHealth%20store.html#shop">Shop</a><a href="LidHealth%20store.html#about">Our story</a><a href="LidHealth%20store.html#practitioners">Practitioners</a></nav><a class="wordmark" href="LidHealth%20store.html">LIDHEALTH</a><a class="ghost" href="LidHealth%20store.html#shop">Continue shopping&nbsp; →</a></div></header>
+<main class="wrap">
+  <div class="intro">
+    <p class="eyebrow">Your selection</p>
+    <h1>Your cart.</h1>
+    <p>A few thoughtful essentials, gathered in one place.</p>
+  </div>
+  <section class="cart-shell" aria-label="Cart items">
+    <div class="cart-heading"><h2>Items</h2><span id="item-count"></span></div>
+    <div id="items" aria-live="polite"></div>
+    <p id="note" class="note" role="status"></p>
+  </section>
+</main>
+<footer><div class="wrap">© 2026 LidHealth</div></footer>
+<script src="store-config.js"></script>
+<script src="cart-storage.js"></script>
+<script>
+const $=selector=>document.querySelector(selector),R=amount=>"R"+(amount%1?amount.toFixed(2):amount);
+let cart=[];
+try{cart=LidHealthCart.load()}catch(error){$("#note").textContent=error.message}
+function saveCart(previous){
+  try{LidHealthCart.save(cart);$("#note").textContent="";draw();return true}
+  catch(error){cart=previous;$("#note").textContent=error.message;draw();return false}
+}
+function draw(){
+  const items=$("#items");items.replaceChildren();
+  $("#item-count").textContent=`${cart.reduce((sum,item)=>sum+item.qty,0)} ${cart.reduce((sum,item)=>sum+item.qty,0)===1?"item":"items"}`;
+  if(!cart.length){const empty=document.createElement("p");empty.className="empty";empty.textContent="Your cart is empty. Add a product from the shop.";items.appendChild(empty);return}
+  cart.forEach((item,index)=>{
+    const row=document.createElement("div");row.className="item";
+    const name=document.createElement("span");name.className="item-name";name.textContent=`${item.name}, ${item.label}`;
+    const quantity=document.createElement("span");quantity.className="quantity";
+    const fewer=document.createElement("button");fewer.type="button";fewer.className="ghost";fewer.dataset.change=`${index}:-1`;fewer.setAttribute("aria-label",`Remove one ${item.name}, ${item.label}`);fewer.textContent="−";
+    const count=document.createElement("span");count.textContent=String(item.qty);
+    const more=document.createElement("button");more.type="button";more.className="ghost";more.dataset.change=`${index}:1`;more.setAttribute("aria-label",`Add one ${item.name}, ${item.label}`);more.textContent="+";
+    quantity.append(fewer,count,more);
+    const price=document.createElement("span");price.textContent=R(item.price*item.qty);
+    row.append(name,quantity,price);items.appendChild(row);
+  });
+  const total=document.createElement("div");total.className="total";
+  const totalLabel=document.createElement("span");totalLabel.textContent="Total";
+  const totalAmount=document.createElement("span");totalAmount.textContent=R(cart.reduce((sum,item)=>sum+item.price*item.qty,0));
+  total.append(totalLabel,totalAmount);items.appendChild(total);
+  const pay=document.createElement("button");pay.type="button";pay.className="btn";pay.id="pay";pay.textContent="Pay with PayFast";items.appendChild(pay);
+}
+$("#items").addEventListener("click",event=>{
+  const button=event.target.closest("button");
+  if(!button)return;
+  if(button.id==="pay"){pay();return}
+  if(!button.dataset.change)return;
+  const previous=cart.map(item=>({...item}));
+  const[index,delta]=button.dataset.change.split(":").map(Number);
+  cart[index].qty+=delta;
+  if(cart[index].qty<1)cart.splice(index,1);
+  saveCart(previous);
+});
+function pay(){
+  const note=$("#note");
+  if(!cart.length){note.textContent="Your cart is empty.";return}
+  if(!CFG.merchantId||!CFG.merchantKey){note.textContent="Payments aren’t connected yet. Add the PayFast merchant ID and key to enable checkout.";return}
+  const total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+  const form=document.createElement("form");form.method="post";form.action=(CFG.sandbox?"https://sandbox.payfast.co.za":"https://www.payfast.co.za")+"/eng/process";
+  const values={merchant_id:CFG.merchantId,merchant_key:CFG.merchantKey,return_url:CFG.returnUrl,cancel_url:CFG.cancelUrl,amount:total.toFixed(2),item_name:"LidHealth order",item_description:cart.map(item=>item.qty+" × "+item.name+" "+item.label).join(", ").slice(0,255)};
+  for(const[name,value]of Object.entries(values)){if(!value)continue;const input=document.createElement("input");input.type="hidden";input.name=name;input.value=value;form.appendChild(input)}
+  document.body.appendChild(form);form.submit();
+}
+draw();
+</script>
+</body>
+</html>
