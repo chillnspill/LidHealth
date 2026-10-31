@@ -78,10 +78,11 @@ main{width:min(900px,calc(100% - 48px));padding-top:58px;padding-bottom:82px}
 footer{padding:22px 0;color:var(--mute);font-size:11px}
 @media(max-width:760px){.wrap{width:calc(100% - 32px)}header .wrap{min-height:60px;grid-template-columns:1fr auto;gap:8px}.wordmark{grid-column:1;grid-row:1;justify-self:start}.cart-nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:18px;padding:0 0 12px}.cart-nav a{font-size:9px}header .ghost{grid-column:2;grid-row:1;min-height:36px;font-size:10px}main{width:calc(100% - 32px);padding-top:42px;padding-bottom:54px}.cart-shell{padding:18px 0}.item{grid-template-columns:minmax(0,1fr) auto;gap:10px}.item>span:last-child{grid-column:1/-1;text-align:right}.item-name{font-size:14px}.intro{margin-bottom:26px}#pay{max-width:none;width:100%}}
 </style>
+<link rel="stylesheet" href="site-header.css">
 </head>
 <body>
 <div class="announce">LID & LASH CARE, MADE FOR EVERYDAY LIFE</div>
-<header><div class="wrap"><nav class="cart-nav" aria-label="Main navigation"><a href="LidHealth%20store.html#shop">Shop</a><a href="LidHealth%20store.html#about">Our story</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></nav><a class="wordmark" href="LidHealth%20store.html">LIDHEALTH</a><a class="ghost" href="LidHealth%20store.html#shop">Continue shopping&nbsp; →</a></div></header>
+<header class="site-header"><div class="wrap"><nav aria-label="Main navigation"><a href="LidHealth%20store.html#shop">Shop</a><a href="LidHealth%20store.html#about">Our story</a><a href="practitioners.html">Practitioners</a><a href="contact.html">Contact</a></nav><a class="brand" href="LidHealth%20store.html" aria-label="LidHealth home"><img class="logo" src="files/LID%20HEALTH%20LOGO.jpeg" alt="LidHealth, lid and lash hygiene"></a><a class="cart-link" href="cart.html" id="cart-link">Cart (0)</a></div></header>
 <main class="wrap">
   <div class="intro">
     <p class="eyebrow">Your selection</p>
@@ -107,7 +108,9 @@ function saveCart(previous){
 }
 function draw(){
   const items=$("#items");items.replaceChildren();
-  $("#item-count").textContent=`${cart.reduce((sum,item)=>sum+item.qty,0)} ${cart.reduce((sum,item)=>sum+item.qty,0)===1?"item":"items"}`;
+  const count=cart.reduce((sum,item)=>sum+item.qty,0);
+  $("#item-count").textContent=`${count} ${count===1?"item":"items"}`;
+  $("#cart-link").textContent=`Cart (${count})`;
   if(!cart.length){const empty=document.createElement("p");empty.className="empty";empty.textContent="Your cart is empty. Add a product from the shop.";items.appendChild(empty);return}
   cart.forEach((item,index)=>{
     const row=document.createElement("div");row.className="item";
